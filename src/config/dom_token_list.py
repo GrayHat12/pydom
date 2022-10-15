@@ -2,11 +2,10 @@ from typing import Any, Callable, Generic, Iterable, List, TypeVar
 
 
 _T = TypeVar('_T')
-CHANGE_CALLBACK = Callable[[List[_T]], None]
 
 
 class DomTokenList(Generic[_T]):
-    def __init__(self, change_callback: CHANGE_CALLBACK[_T], iterable: Iterable[_T]) -> None:
+    def __init__(self, change_callback: Callable[[List[_T]], None], iterable: Iterable[_T]) -> None:
         self.__change_callback = change_callback
         self.__list = list(iterable)
     
