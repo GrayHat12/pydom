@@ -50,3 +50,15 @@ Browser dom like interface for python with type hints.
             raise Exception("Could not find Element class")
         return element
     ```
+5. Private fields in python are sneakily saved as `f"_{self.__class__.__name__}__parent"`.
+   So in order to access/modify them:
+   [element.py](src/elements/element.py)
+   ```py
+   def appendChild(self, child: Union[ElementInterface, str]):
+        if isinstance(child, str):
+            child = str_to_element(child)
+        if not isinstance(child, ElementInterface):
+            raise TypeError("child must be a string or ElementInterface")
+        child.__setattr__(f"_{child.__class__.__name__}__parent", self)
+        self.__children.append(child)
+   ```

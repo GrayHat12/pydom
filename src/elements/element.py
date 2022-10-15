@@ -164,7 +164,7 @@ class Element(ElementInterface):
             child = str_to_element(child)
         if not isinstance(child, ElementInterface):
             raise TypeError("child must be a string or ElementInterface")
-        child.__setattr__(f"_{self.__class__.__name__}__parent", self)
+        child.__setattr__(f"_{child.__class__.__name__}__parent", self)
         self.__children.append(child)
 
     def getAttribute(self, name: str) -> Optional[str]:
