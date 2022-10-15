@@ -50,7 +50,7 @@ Browser dom like interface for python with type hints.
             raise Exception("Could not find Element class")
         return element
     ```
-5. Private fields in python are sneakily saved as `f"_{self.__class__.__name__}__parent"`.
+5. Private fields in python are sneakily saved as `f"_{class_name}{__private_field}"`.
    So in order to access/modify them:
    [element.py](src/elements/element.py)
    ```py
